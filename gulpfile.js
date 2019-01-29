@@ -13,7 +13,7 @@ var gulp = require('gulp'),
     htmlbeautify = require('gulp-html-beautify'),
     pug = require('gulp-pug');
 
-gulp.task('pug', function() {
+gulp.task('html', function() {
     return gulp.src('./src/html/*.pug')
         .pipe(plumber({
             errorHandler: notify.onError()
@@ -21,9 +21,15 @@ gulp.task('pug', function() {
         .pipe(pug({pretty:true}))
         .pipe(htmlbeautify())
         .pipe(gulp.dest('./build/'))
+        .pipe(browserSync.stream())
+        .pipe(notify({
+            title: 'HTML compiled',
+            sound: false
+        }));
+
 });
 
-gulp.task('sass', function() {
+gulp.task('css', function() {
     return gulp.src('src/sass/style.scss')
         .pipe(sass())
         .pipe(autoprefixer({
@@ -35,7 +41,12 @@ gulp.task('sass', function() {
         }))
         // .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('build/css'))
-        .pipe(browserSync.stream());
+        .pipe(browserSync.stream())
+        .pipe(notify({
+            title: 'CSS compiled',
+            sound: false
+        }));
+
 });
 
 gulp.task('js', function() {
@@ -46,5 +57,30 @@ gulp.task('js', function() {
         .pipe(uglify())
         // .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('build/js'))
-        .pipe(browserSync.stream());
+        .pipe(browserSync.stream())
+        .pipe(notify({
+            title: 'JS compiled',
+            sound: false
+        }));
+
 });
+
+gulp.task('serve', function() {
+    browserSync.init({
+        server: {
+            baseDir: './build/'
+        }
+    });
+
+    gulp.watch('src/sass/**/*.scss', gulp.series('css'));
+    gulp.watch('src/js/**/*.js', gulp.series('js'));
+    gulp.watch('src/html/**/*.pug', gulp.series('html'));
+});
+
+gulp.task('build', gulp.series(
+    'html',
+    'css',
+    'js'
+));
+
+gulp.task('default', gulp.series('build', 'serve'));
