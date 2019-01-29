@@ -9,8 +9,13 @@ var gulp = require('gulp'),
     cleanCSS = require('gulp-clean-css'),
     babel = require('gulp-babel'),
     rename = require('gulp-rename'),
+    imagemin = require('gulp-imagemin'),
     autoprefixer = require('gulp-autoprefixer'),
     htmlbeautify = require('gulp-html-beautify'),
+    spritesmith = require('gulp.spritesmith'),
+    merge = require('merge-stream'),
+    buffer = require('vinyl-buffer'),
+    csso = require('gulp-csso'),
     pug = require('gulp-pug');
 
 gulp.task('html', function() {
@@ -64,6 +69,37 @@ gulp.task('js', function() {
         }));
 
 });
+
+gulp.task('img', function () {
+    return gulp.src('src/img/images/**/*.{png,jpg,gif}') 
+        .pipe(imagemin({ 
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            interlaced: true
+        }))
+        .pipe(gulp.dest('build/img')) 
+        .pipe(reload({stream: true}));
+});
+
+gulp.task('sprite', function () {
+    var spriteData = gulp.src('src/img/sprites/**/*.png')
+        .pipe(spritesmith({
+        imgName: 'sprite.png',
+        cssName: '_sprite.scss'
+        }));
+   
+    var imgStream = spriteData.img
+      .pipe(buffer())
+      .pipe(imagemin())
+      .pipe(gulp.dest('build/img/'));
+   
+    var cssStream = spriteData.css
+      .pipe(csso())
+      .pipe(gulp.dest('src/sass/'));
+   
+    return merge(imgStream, cssStream);
+  });
+
 
 gulp.task('serve', function() {
     browserSync.init({
