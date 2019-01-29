@@ -16,6 +16,7 @@ var gulp = require('gulp'),
     merge = require('merge-stream'),
     buffer = require('vinyl-buffer'),
     csso = require('gulp-csso'),
+    del = require('del'),
     pug = require('gulp-pug');
 
 gulp.task('html', function() {
@@ -98,7 +99,12 @@ gulp.task('sprite', function () {
       .pipe(gulp.dest('src/sass/'));
    
     return merge(imgStream, cssStream);
-  });
+});
+
+
+gulp.task('clean', function() {
+    return del(['build/*.html', 'build/css/**/*.css', 'build/js/**/*.js', 'build/img/**/*.{png,jpg,gif}']);
+});
 
 
 gulp.task('serve', function() {
@@ -111,12 +117,16 @@ gulp.task('serve', function() {
     gulp.watch('src/sass/**/*.scss', gulp.series('css'));
     gulp.watch('src/js/**/*.js', gulp.series('js'));
     gulp.watch('src/html/**/*.pug', gulp.series('html'));
+    gulp.watch('src/img/images/*', gulp.series('img'));
+    gulp.watch('src/img/sprites/*', gulp.series('sprite'));
 });
 
 gulp.task('build', gulp.series(
     'html',
     'css',
-    'js'
+    'js',
+    'img',
+    'sprite'
 ));
 
 gulp.task('default', gulp.series('build', 'serve'));
