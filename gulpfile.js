@@ -7,6 +7,8 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     rigger = require('gulp-rigger'),
     cleanCSS = require('gulp-clean-css'),
+    babel = require('gulp-babel'),
+    rename = require('gulp-rename'),
     autoprefixer = require('gulp-autoprefixer'),
     htmlbeautify = require('gulp-html-beautify'),
     pug = require('gulp-pug');
@@ -33,5 +35,16 @@ gulp.task('sass', function() {
         }))
         // .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('build/css'))
+        .pipe(browserSync.stream());
+});
+
+gulp.task('js', function() {
+    return gulp.src('src/js/main.js')
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
+        .pipe(uglify())
+        // .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest('build/js'))
         .pipe(browserSync.stream());
 });
