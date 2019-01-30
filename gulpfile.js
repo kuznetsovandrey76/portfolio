@@ -73,11 +73,11 @@ gulp.task('js', function() {
 
 gulp.task('img', function () {
     return gulp.src('src/img/images/**/*.{png,jpg,gif}') 
-        .pipe(imagemin({ 
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            interlaced: true
-        }))
+        // .pipe(imagemin({ 
+        //     progressive: true,
+        //     svgoPlugins: [{removeViewBox: false}],
+        //     interlaced: true
+        // }))
         .pipe(gulp.dest('build/img')) 
         .pipe(reload({stream: true}));
 });
@@ -91,7 +91,7 @@ gulp.task('sprite', function () {
    
     var imgStream = spriteData.img
       .pipe(buffer())
-      .pipe(imagemin())
+    //   .pipe(imagemin())
       .pipe(gulp.dest('build/img/'));
    
     var cssStream = spriteData.css
