@@ -1,2 +1,11 @@
-var add = (a, b) => a + b;
-console.log(add(1, 2));
+// jQuery
+////= ./plugins/jquery.min.js
+
+// Popper
+////= ./plugins/popper.min.js
+
+// Bootstrap
+////= ./plugins/bootstrap.min.js
+
+// Custom
+//= ./scripts/custom.js

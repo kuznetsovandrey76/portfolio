@@ -57,6 +57,7 @@ gulp.task('css', function() {
 
 gulp.task('js', function() {
     return gulp.src('src/js/main.js')
+        .pipe(rigger())
         .pipe(babel({
             presets: ['@babel/env']
         }))
