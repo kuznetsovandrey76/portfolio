@@ -4,7 +4,8 @@
   "description": "my portfolio web page",
   "main": "app.js",
   "scripts": {
-    "prod": "gulp build"
+    "prod": "gulp build",
+    "yolo": "git add --all && git commit -am \"$(date)\" && git push origin master"
   },
   "author": "Andrey Kuznetsov",
   "license": "MIT",
