@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "prod": "gulp build",
-    "yolo": "git add --all && git commit -am \"$(date)\" && git push origin master"
+    "git": "git add --all && git commit -am \"stable version\" && git push origin master"
   },
   "author": "Andrey Kuznetsov",
   "license": "MIT",
