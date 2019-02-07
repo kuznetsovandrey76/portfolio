@@ -28,10 +28,10 @@ gulp.task('html', function() {
         .pipe(htmlbeautify())
         .pipe(gulp.dest('./build/'))
         .pipe(browserSync.stream())
-        .pipe(notify({
-            title: 'HTML compiled',
-            sound: false
-        }));
+        // .pipe(notify({
+        //     title: 'HTML compiled',
+        //     sound: false
+        // }));
 
 });
 
@@ -48,10 +48,10 @@ gulp.task('css', function() {
         // .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('build/css'))
         .pipe(browserSync.stream())
-        .pipe(notify({
-            title: 'CSS compiled',
-            sound: false
-        }));
+        // .pipe(notify({
+        //     title: 'CSS compiled',
+        //     sound: false
+        // }));
 
 });
 
@@ -65,10 +65,10 @@ gulp.task('js', function() {
         // .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('build/js'))
         .pipe(browserSync.stream())
-        .pipe(notify({
-            title: 'JS compiled',
-            sound: false
-        }));
+        // .pipe(notify({
+        //     title: 'JS compiled',
+        //     sound: false
+        // }));
 
 });
 
