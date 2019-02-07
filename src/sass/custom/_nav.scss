@@ -1,29 +1,6 @@
 .navigation {
     background: black;
 
-    &__list {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-    }
-    &__item {
-        margin: 0 10px;
-    }
-    &__link {
-        color: white;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    &__logo {
-        width: 50px;
-        display: flex;
-        align-items: center;
-    }
-
     &::after {
         content: '';
         position: absolute;
@@ -35,5 +12,17 @@
         border-left: 40px solid rgba(0, 0, 0, 0);
         left: 50%;
         margin-left: -34px;
+    }
+}
+
+.nav {
+    align-items: center;
+
+    &-link {
+        color: white;
+        
+        &:hover {
+            color: antiquewhite;
+        }
     }
 }
