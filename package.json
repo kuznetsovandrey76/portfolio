@@ -4,7 +4,7 @@
   "description": "my portfolio web page",
   "main": "app.js",
   "scripts": {
-    "test": ""
+    "prod": "gulp"
   },
   "author": "Andrey Kuznetsov",
   "license": "MIT",
