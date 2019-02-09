@@ -1,2 +1,12 @@
 @import '_nav';
 
+.custom {
+    &-row {
+        height: 50px;
+        background: lightblue;
+    }
+    &-col {
+        background: khaki;
+        border: 1px solid black;
+    }
+}

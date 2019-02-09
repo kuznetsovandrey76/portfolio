@@ -1,14 +1,18 @@
-nav.navigation
+nav.navbar.navbar-expand-sm.navbar-dark.bg-dark
   block navContent
-  ul.nav.justify-content-center
-    li.nav-item
-      a.nav-link(href="#") Portfolio
-    li.nav-item
-      a.nav-link(href="#") About
-    li.nav-item
-      a.nav-link(href="/") 
-        img(src='img/javascript.png', width="40", alt='logo')
-    li.nav-item
-      a.nav-link(href="#") Blog
-    li.nav-item
-      a.nav-link(href="#") Contact
+  //- a.navbar-brand(href="#") Logo
+  button.navbar-toggler.ml-auto(data-toggle="collapse", data-target="#navbarMenu")
+    span.navbar-toggler-icon
+  div#navbarMenu.collapse.navbar-collapse.justify-content-center
+    ul.navbar-nav.align-items-center
+      li.nav-item
+        a.nav-link(href="#") Portfolio
+      li.nav-item
+        a.nav-link(href="#") About
+      li.nav-item
+        a.nav-link(href="/") 
+          img(src='img/javascript.png', width="40", alt='logo')
+      li.nav-item
+        a.nav-link(href="#") Blog
+      li.nav-item
+        a.nav-link(href="#") Contact
