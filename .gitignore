@@ -1,6 +1,4 @@
 node_modules/
 bower_components/
-build/*.html
-build/css/*
-build/js/*
-build/img/*
+build/
+dist/
