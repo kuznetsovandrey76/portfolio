@@ -1,6 +1,7 @@
-@import 'plugins/plugins';
+@import 'plugins/plugins'; // Custom bootstrap
+@import "node_modules/bootstrap/scss/bootstrap";
 @import 'custom/custom';
-@import '_sprite';
+
 
 
 
